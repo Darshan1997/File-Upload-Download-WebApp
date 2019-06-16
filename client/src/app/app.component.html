@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row text-center">
+    <div class="col-lg-5">
+      <div class="custom-file" style="margin-top:50px;">
+        <input type="file" class="custom-file-input" id="customFile" multiple ng2FileSelect [uploader]="uploader">
+        <label class="custom-file-label" for="customFile">Choose file</label>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="row uploadList" *ngFor="let item of uploader.queue" style="margin-top:10px;">
+    <div class="col-sm-4">{{item.file.name}}</div>
+    <div class="col-sm-3">
+      <div class="progress">
+        <div class="progress-bar bg-success" [ngStyle]="{'width':item.progress+'%'}"></div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <button type="button" class="btn btn-dark" (click)="item.upload()">Upload</button>&nbsp;
+      <button type="button" class="btn btn-danger" (click)="item.remove()">Cancel</button>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <table class="table">
+
+      <tr *ngFor="let file of arraylist;let i = index">
+        <td>
+          {{file.filename}}
+        </td>
+        <td>
+          <button class="btn btn-primary" (click)=download(i)>Download</button>
+        </td>
+      </tr>
+
+    </table>
+
+  </div>
+
+</div>
+
+<router-outlet></router-outlet>
